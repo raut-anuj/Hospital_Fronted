@@ -1,14 +1,12 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-import Button from "./Button";
-import Input from "./Input";
+import React, {useState} from 'react'
+import {Button, Input, Login} from './index.js'
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const navigate = useNavigate();
   const [error, setError] = useState("")
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const {register, handleSubmit} = useForm()
 
   const create = (data) => {
@@ -22,21 +20,6 @@ return (
         <h2 className="text-2xl text-blue-600 text-center font-bold mb-6">
          Create Account
           </h2>
-
-          <h2 className="mt-4 text-center">
-          Already have an account?</h2>
-          <p className="mt-2 text-center text-base text-black/60">
-                    Already have an account?&nbsp;
-                    <Link
-                        to="/login"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
-                    >
-                        Sign In
-                    </Link>
-                </p>
-          {error && (
-          <p className="text-red-600 mt-4 text-center">{error}</p>
-        )}
          
           <form onSubmit={handleSubmit(create)} className="mt-6">
           <div className="space-y-5">
@@ -44,8 +27,15 @@ return (
             <Input
               label="Full Name"
               type="text"
-              placeholder="full name"
+              placeholder="Enter your full name"
               {...register("name", { required: true })}
+            />
+
+            <Input
+              label="Phone Number"
+              type="text"
+              placeholder="Enter your phone number"
+              {...register("phone number", { required: true })}
             />
 
             <Input
@@ -69,6 +59,15 @@ return (
                   required: true,})}
               />
 
+            <Input
+              label="Confirm Password: "
+              type="password"
+              placeholder="Enter your password"
+              {...register("confirm password", {
+                  required: true,})}
+              />
+              
+
             <Button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
@@ -78,6 +77,19 @@ return (
 
           </div>
         </form>
+
+          <p className="mt-2 text-center text-base text-black/60">
+                    Already have an account?&nbsp;
+                     <Link
+                      to="/login"
+                      className="font-medium text-blue-600 hover:underline"
+                    >
+                      Sign Up
+                     </Link>
+                </p>
+          {error && (
+          <p className="text-red-600 mt-4 text-center">{error}</p>
+        )}
     </div>
 </div>
 )}

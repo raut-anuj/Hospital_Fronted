@@ -41,18 +41,8 @@ function Login() {
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
         
         <h2 className="text-2xl text-blue-600 text-center font-bold mb-6">
-          Hospital Login
+          Log In
         </h2>
-
-        <div className="mt-4 text-center">
-          Don&apos;t have any account?&nbsp;
-          <Link
-            to="/signup"
-            className="font-medium text-blue-600 hover:underline"
-          >
-            Sign Up
-          </Link>
-        </div>
 
         {/* 🔥 Error show */}
         {error && (
@@ -85,6 +75,16 @@ function Login() {
 
           </div>
         </form>
+
+        <div className="mt-4 text-center">
+          Don&apos;t have any account?&nbsp;
+          <Link
+            to="/signup"
+            className="font-medium text-blue-600 hover:underline"
+          >
+            Sign Up
+          </Link>
+        </div>
       </div>
     </div>
   );
