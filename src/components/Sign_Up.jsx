@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import Input from "./Input";
 import { useForm } from "react-hook-form";
-v
+import { Link, useNavigate } from "react-router-dom";
+
 function Signup() {
   const navigate = useNavigate();
   const [error, setError] = useState("")
   const dispatch = useDispatch()
   const {register, handleSubmit} = useForm()
-}
+
+  const create = (data) => {
+  console.log("SIGNUP DATA", data);
+};
 
 return (
    <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -51,7 +55,7 @@ return (
               {...register("email", {
                   required: true,
                   validate: {
-                      matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                      matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                       "Email address must be a valid address",
                   }
               })}
@@ -76,6 +80,6 @@ return (
         </form>
     </div>
 </div>
-)
+)}
 
-export default Sign_Up
+export default Signup 
