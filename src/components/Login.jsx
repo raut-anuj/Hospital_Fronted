@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import Input from "./Input";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
  
 function Login() {
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   // 🔥 IMPORTANT
   const { register, handleSubmit } = useForm();
