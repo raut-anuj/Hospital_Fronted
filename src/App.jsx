@@ -12,6 +12,8 @@ import { DocotrDashboard, MyPatient, Schedule } from "./components/index.js";
 //patient
 import { PatientAppointments, PatientDashboard } from "./components/index.js"
 
+import { ProtectedRoute } from "./components/index.js";
+
 export default function App() {
   return (
     <Routes>
@@ -21,7 +23,11 @@ export default function App() {
       <Route path="/signup" element={<Signup />} />
 
       {/* Admin routes */}
-      <Route path="/admin" element={<AdminLayout />}>
+      <Route path="/admin" element={
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
+        }>
 
         {/* default page → /admin */}
         <Route index element={<Dashboard />} />

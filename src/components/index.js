@@ -28,6 +28,8 @@ import Schedule from "../pages/doctor/Schedule"
 import PatientAppointments from "../pages/patient/Appointment"
 import PatientDashboard from "../pages/patient/PatientDashboard"
 
+import ProtectedRoute from "../routes/ProtectedRoute"
+
 export {
     Button,
     Input,
@@ -64,4 +66,6 @@ export {
     PatientDashboard,
     PatientAppointments,
     PatientSidebar,
+
+    ProtectedRoute,
 }
