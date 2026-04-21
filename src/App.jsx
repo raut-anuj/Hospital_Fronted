@@ -1,11 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Dashboard from "./pages/admin/Dashboard";
-import AdminLayout from "./layout/AdminLayout";
-import Doctors from "./pages/admin/Doctor";
-import Patients from "./pages/admin/Patient";
-import Appointments from "./pages/admin/Apointment"
+import { Login, Signup } from "./components/index.js";
+
+import { AdminLayout, DoctorLayout, PatientLayout } from "./components/index.js";
+
+//admin
+import { Dashboard, AdminAppointments, Patients, Doctors } from "./components/index.js";
+
+//doctor
+import { DocotrDashboard, MyPatient, Schedule } from "./components/index.js";
+
+//patient
+import { PatientAppointments, PatientDashboard } from "./components/index.js"
 
 export default function App() {
   return (
@@ -23,10 +28,30 @@ export default function App() {
 
         <Route path="doctors" element={<Doctors />} />
         <Route path="patients" element={<Patients />} />
-        <Route path="appointments" element={<Appointments />} />
+        <Route path="appointments" element={<AdminAppointments />} />
 
       </Route>
+
+      {/* Doctor routes */}
+      <Route path="/doctor" element={<DoctorLayout />}>
+      
+        {/* default page → /admin */}
+        <Route index element={<DocotrDashboard />} />
+        <Route path="MyPatient" element={<MyPatient />} />
+        <Route path="Schedule" element={<Schedule />} />
+        {/* <Route path="appointments" element={<DoctorAppointments />} /> */}
+
+      </Route>
+      
+      {/* Patient routes */}
+      <Route path="/patient" element={<PatientLayout />}>
+      <Route index element={<PatientDashboard />} />
+      <Route path="Appoinment" element={<PatientAppointments />} />
+    </Route>
 
     </Routes>
   );
 }
+
+//       <Route path="patients" element={<Patients />} />
+//         <Route path="appointments" element={<Appointments />} />

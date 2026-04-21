@@ -1,12 +1,13 @@
-import Sidebar from "../components/admin/Sidebar"
+import { PatientSidebar } from "../components/index.js";
+import { Outlet } from "react-router-dom";
 
-export default function AdminLayout({ children }) {
+export default function PatientLayout() {
   return (
-    <div className="h-screen flex overflow-hidden">
-      <Sidebar />
+    <div className="flex h-screen">
+      <PatientSidebar />
 
-      <main className="flex-1 p-8 overflow-y-auto bg-linear-to-br from-gray-50 to-gray-100">
-        {children}
+      <main className="flex-1 p-6 overflow-y-auto">
+        <Outlet />
       </main>
     </div>
   );

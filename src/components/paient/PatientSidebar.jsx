@@ -2,23 +2,25 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
-  { name: "Dashboard", icon: "🏠", path: "/admin", exact: true },
-  { name: "Doctors", icon: "👨‍⚕️", path: "/admin/doctors" },
-  { name: "Patients", icon: "🧑‍🤝‍🧑", path: "/admin/patients" },
-  { name: "Appointments", icon: "📅", path: "/admin/appointments" },
+  { name: "Dashboard", icon: "🏠", path: "/patient", exact: true },
+  { name: "My Appointments", icon: "📅", path: "/patient/Appoinment" },
+//   { name: "Prescriptions", icon: "💊", path: "/patient/prescriptions" },
+//   { name: "Reports", icon: "📑", path: "/patient/reports" },
+//   { name: "Billing", icon: "💳", path: "/patient/billing" },
 ];
 
-export default function Sidebar() {
+export default function PatientSidebar() {
   return (
-    <aside className="w-64 h-screen bg-linear-to-b from-blue-950 via-blue-900 to-blue-800 text-white shadow-2xl flex flex-col">
+    <aside className="w-64 h-screen bg-linear-to-b from-green-950 via-green-900 to-green-800 text-white shadow-2xl flex flex-col">
+      
       {/* Header */}
       <NavLink
-        to="/admin"
+        to="/patient"
         end
         className="p-5 border-b border-white/10 block hover:bg-white/10 transition"
       >
-        <h2 className="text-xl font-bold tracking-wide">🏥 Admin Panel</h2>
-        <p className="text-xs text-white/60 mt-1">Hospital Management System</p>
+        <h2 className="text-xl font-bold tracking-wide">🧑‍🤝‍🧑 Patient Panel</h2>
+        <p className="text-xs text-white/60 mt-1">Hospital Care System</p>
       </NavLink>
 
       {/* Navigation */}
@@ -27,7 +29,7 @@ export default function Sidebar() {
           <NavLink
             key={index}
             to={item.path}
-            end={item.exact || false}  
+            end={item.exact || false}
             className={({ isActive }) =>
               `w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                 isActive ? "bg-white/20" : "hover:bg-white/10"
@@ -42,7 +44,7 @@ export default function Sidebar() {
 
       {/* Footer */}
       <div className="p-4 border-t border-white/10 text-xs text-white/50">
-        © 2026 Hospital Admin
+        © 2026 Patient Portal
       </div>
     </aside>
   );

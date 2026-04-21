@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Button, Input, Login} from './index.js'
+import {Button, Input} from './index.js'
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -81,7 +81,7 @@ return (
           <p className="mt-2 text-center text-base text-black/60">
                     Already have an account?&nbsp;
                      <Link
-                      to="/login"
+                      to="/"
                       className="font-medium text-blue-600 hover:underline"
                     >
                       Sign Up

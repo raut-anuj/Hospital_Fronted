@@ -1,61 +1,55 @@
 import React from "react";
-import Sidebar from "../../components/admin/Sidebar";
 
-const stats = [
-  {
-    title: "Total Doctors",
-    value: "45",
-    change: "+5 this week",
-    color: "text-green-600",
-  },
-  {
-    title: "Total Patients",
-    value: "120",
-    change: "+12 this week",
-    color: "text-blue-600",
-  },
-  {
-    title: "Appointments",
-    value: "30",
-    change: "Next: 3 today",
-    color: "text-purple-600",
-  },
-];
+export default function DoctorSchedule() {
+  const schedule = [
+    { patient: "Anuj Kumar", day: "Tuesday", date: "22 Apr 2026", time: "10:00 AM", status: "Upcoming" },
+    { patient: "Riya Sharma", day: "Tuesday", date: "22 Apr 2026", time: "12:00 PM", status: "Completed" },
+    { patient: "Amit Verma", day: "Tuesday", date: "22 Apr 2026", time: "03:00 PM", status: "Cancelled" },
+    { patient: "Neha Gupta", day: "Wednesday", date: "23 Apr 2026", time: "11:00 AM", status: "Upcoming" },
+  ];
 
-export default function Dashboard() {
+  const statusBadge = (status) => {
+    switch (status) {
+      case "Upcoming":
+        return <span className="bg-blue-100 text-blue-600 px-2 py-1 rounded">Upcoming</span>;
+      case "Completed":
+        return <span className="bg-green-100 text-green-600 px-2 py-1 rounded">Completed</span>;
+      case "Cancelled":
+        return <span className="bg-red-100 text-red-600 px-2 py-1 rounded">Cancelled</span>;
+      default:
+        return <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded">{status}</span>;
+    }
+  };
+
   return (
-    <>
-      {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-3xl font-semibold text-gray-800">
-          Dashboard <span className="ml-1">👋</span>
-        </h2>
-        <p className="text-gray-500 text-sm mt-1">
-          Welcome back, Admin. Here’s your overview.
-        </p>
+    <div className="p-8 flex-1 bg-gray-50">
+      <h2 className="text-2xl font-bold mb-6">Doctor Schedule</h2>
+
+      {/* Schedule Table */}
+      <div className="bg-white shadow rounded-lg p-6">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="border-b">
+              <th className="p-3">Patient</th>
+              <th className="p-3">Day</th>
+              <th className="p-3">Date</th>
+              <th className="p-3">Time</th>
+              <th className="p-3">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {schedule.map((item, index) => (
+              <tr key={index} className="border-b hover:bg-gray-50">
+                <td className="p-3">{item.patient}</td>
+                <td className="p-3">{item.day}</td>
+                <td className="p-3">{item.date}</td>
+                <td className="p-3">{item.time}</td>
+                <td className="p-3">{statusBadge(item.status)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {stats.map((item, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl hover:-translate-y-1 transition-all"
-          >
-            <h3 className="text-lg font-medium text-gray-700">
-              {item.title}
-            </h3>
-
-            <p className={`text-4xl font-bold mt-2 ${item.color}`}>
-              {item.value}
-            </p>
-
-            <span className="text-sm text-gray-500 mt-1 block">
-              {item.change}
-            </span>
-          </div>
-        ))}
-      </div>
-    </>
+    </div>
   );
 }
