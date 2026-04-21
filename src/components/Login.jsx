@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Input } from "./index.js"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
- 
+import { useAuth0 } from "@auth0/auth0-react";
+
 function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { loginWithRedirect, isAuthenticated, user, isLoading } = useAuth0();
 
   // 🔥 IMPORTANT
   const { register, handleSubmit } = useForm();
+
+   useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/admin"); // 🔥 direct admin
+    }
+  }, [isAuthenticated]);
+
+  if (isLoading) return <p>Loading...</p>;
 
   // 🔥 Login function
   const login = async (data) => {
@@ -69,10 +79,30 @@ function Login() {
 
             <Button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+              className="w-full bg-blue-300 text-white py-2 rounded-lg hover:bg-blue-700 transition"
             >
               Sign In
             </Button>
+
+            {!isAuthenticated ? (
+          <button
+            onClick={() => loginWithRedirect()}
+            className="w-full bg-red-500 text-white py-2 rounded-lg shadow hover:bg-red-700 transition"
+          >
+            Login with Google
+          </button>
+
+      ) : (
+        <div className="text-center">
+          <h3 className="text-lg font-semibold">
+            Welcome {user.name}
+          </h3>
+          <img
+          src={user.picture || "/default-user.png"}
+          alt="profile"
+        />
+        </div>
+      )}
 
           </div>
         </form>
@@ -81,7 +111,7 @@ function Login() {
           Don&apos;t have any account?&nbsp;
           <Link
             to="/signup"
-            className="font-medium text-blue-600 hover:underline"
+            className="font-medium text-blue-500 hover:underline"
           >
             Sign Up
           </Link>
