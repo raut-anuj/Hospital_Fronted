@@ -28,7 +28,7 @@ export default function Dashboard() {
       {/* Header */}
       <div className="mb-8">
         <h2 className="text-3xl font-semibold text-gray-800">
-          Dashboard <span className="ml-1">👋</span>
+          Dashboard <span className="ml-1"></span>
         </h2>
         <p className="text-gray-500 text-sm mt-1">
           Welcome back, Admin. Here’s your overview.
@@ -58,4 +58,4 @@ export default function Dashboard() {
       </div>
     </>
   );
-}
+} 

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/admin/Sidebar";
+import { Header, Footer, Sidebar } from "../components/index.js";
 
 export default function AdminLayout() {
   return (
@@ -7,6 +7,7 @@ export default function AdminLayout() {
       <Sidebar />
 
       <main className="flex-1 p-8 overflow-y-auto">
+        <Header />
         <Outlet />
       </main>
     </div>

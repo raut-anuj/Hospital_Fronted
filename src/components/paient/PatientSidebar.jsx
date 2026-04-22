@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
-  { name: "Dashboard", icon: "🏠", path: "/patient", exact: true },
-  { name: "My Appointments", icon: "📅", path: "/patient/Appoinment" },
-//   { name: "Prescriptions", icon: "💊", path: "/patient/prescriptions" },
-//   { name: "Reports", icon: "📑", path: "/patient/reports" },
-//   { name: "Billing", icon: "💳", path: "/patient/billing" },
+  { name: "Dashboard",path: "/patient", exact: true },
+  { name: "My Appointments",path: "/patient/Appoinment" },
+//   { name: "Prescriptions",path: "/patient/prescriptions" },
+//   { name: "Reports",path: "/patient/reports" },
+//   { name: "Billing",path: "/patient/billing" },
 ];
 
 export default function PatientSidebar() {
@@ -19,7 +19,7 @@ export default function PatientSidebar() {
         end
         className="p-5 border-b border-white/10 block hover:bg-white/10 transition"
       >
-        <h2 className="text-xl font-bold tracking-wide">🧑‍🤝‍🧑 Patient Panel</h2>
+        <h2 className="text-xl font-bold tracking-wide"> Patient Panel</h2>
         <p className="text-xs text-white/60 mt-1">Hospital Care System</p>
       </NavLink>
 

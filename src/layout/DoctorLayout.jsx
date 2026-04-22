@@ -1,5 +1,5 @@
-import { DoctorSidebar } from "../components/index.js";
 import { Outlet } from "react-router-dom";
+import { Header, Footer, DoctorSidebar } from "../components/index.js";
 
 export default function PatientLayout() {
   return (
@@ -7,6 +7,7 @@ export default function PatientLayout() {
       <DoctorSidebar />
 
       <main className="flex-1 p-6 overflow-y-auto">
+        <Header />
         <Outlet />
       </main>
     </div>

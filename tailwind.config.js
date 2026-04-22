@@ -1,5 +1,7 @@
 // tailwind.config.js
 export default {
+  darkMode: "class", // 👈 ye line add karo
+
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -9,3 +11,7 @@ export default {
   },
   plugins: [],
 }
+
+// “jab HTML pe dark class hogi tab dark mode apply karo”
+
+

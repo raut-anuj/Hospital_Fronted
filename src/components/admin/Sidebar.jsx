@@ -2,10 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
-  { name: "Dashboard", icon: "🏠", path: "/admin", exact: true },
-  { name: "Doctors", icon: "👨‍⚕️", path: "/admin/doctors" },
-  { name: "Patients", icon: "🧑‍🤝‍🧑", path: "/admin/patients" },
-  { name: "Appointments", icon: "📅", path: "/admin/appointments" },
+  { name: "Dashboard", path: "/admin", exact: true },
+  { name: "Doctors", path: "/admin/doctors" },
+  { name: "Patients", path: "/admin/patients" },
+  { name: "Appointments", path: "/admin/appointments" },
 ];
 
 export default function Sidebar() {
@@ -17,7 +17,7 @@ export default function Sidebar() {
         end
         className="p-5 border-b border-white/10 block hover:bg-white/10 transition"
       >
-        <h2 className="text-xl font-bold tracking-wide">🏥 Admin Panel</h2>
+        <h2 className="text-xl font-bold tracking-wide"> Admin Panel</h2>
         <p className="text-xs text-white/60 mt-1">Hospital Management System</p>
       </NavLink>
 
