@@ -15,17 +15,14 @@ export default function Doctors() {
     specialization: "",
   });
 
-  // 🔍 Search filter
   const filteredDoctors = doctors.filter((d) =>
     d.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // ✍️ Input change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // ➕ Add / Update Doctor
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -36,10 +33,7 @@ export default function Doctors() {
         )
       );
     } else {
-      setDoctors([
-        ...doctors,
-        { id: Date.now(), ...form },
-      ]);
+      setDoctors([...doctors, { id: Date.now(), ...form }]);
     }
 
     setForm({ name: "", specialization: "" });
@@ -47,23 +41,24 @@ export default function Doctors() {
     setEditId(null);
   };
 
-  // ✏️ Edit
   const handleEdit = (doc) => {
     setForm({ name: doc.name, specialization: doc.specialization });
     setEditId(doc.id);
     setShowModal(true);
   };
 
-  // ❌ Delete
   const handleDelete = (id) => {
     setDoctors(doctors.filter((doc) => doc.id !== id));
   };
 
   return (
-    <div>
+    <div className="p-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
+
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold">Doctors Management 👨‍⚕️</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+          Doctors Management 👨‍⚕️
+        </h2>
 
         <button
           onClick={() => setShowModal(true)}
@@ -79,13 +74,15 @@ export default function Doctors() {
         placeholder="Search doctor..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full mb-4 p-2 border rounded-lg"
+        className="w-full mb-4 p-2 border rounded-lg 
+        bg-white text-black border-gray-300
+        dark:bg-gray-800 dark:text-white dark:border-gray-600"
       />
 
       {/* Table */}
-      <div className="bg-white shadow rounded-xl overflow-hidden">
-        <table className="w-full">
-          <thead className="bg-gray-100">
+      <div className="bg-white dark:bg-gray-800 shadow rounded-xl overflow-hidden">
+        <table className="w-full text-gray-700 dark:text-gray-300">
+          <thead className="bg-gray-100 dark:bg-gray-700">
             <tr>
               <th className="p-3">ID</th>
               <th>Name</th>
@@ -96,7 +93,10 @@ export default function Doctors() {
 
           <tbody>
             {filteredDoctors.map((doc) => (
-              <tr key={doc.id} className="border-t">
+              <tr
+                key={doc.id}
+                className="border-t border-gray-200 dark:border-gray-700"
+              >
                 <td className="p-3">{doc.id}</td>
                 <td>{doc.name}</td>
                 <td>{doc.specialization}</td>
@@ -104,14 +104,14 @@ export default function Doctors() {
                 <td className="space-x-2">
                   <button
                     onClick={() => handleEdit(doc)}
-                    className="px-3 py-1 bg-yellow-400 rounded"
+                    className="px-3 py-1 bg-yellow-400 rounded hover:bg-yellow-500"
                   >
                     Edit
                   </button>
 
                   <button
                     onClick={() => handleDelete(doc.id)}
-                    className="px-3 py-1 bg-red-500 text-white rounded"
+                    className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
                   >
                     Delete
                   </button>
@@ -125,8 +125,9 @@ export default function Doctors() {
       {/* 🔥 Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-xl w-96">
-            <h2 className="text-xl font-semibold mb-4">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl w-96 shadow-lg">
+            
+            <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
               {editId ? "Edit Doctor" : "Add Doctor"}
             </h2>
 
@@ -136,7 +137,9 @@ export default function Doctors() {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="Doctor Name"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded 
+                bg-white text-black border-gray-300
+                dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required
               />
 
@@ -145,7 +148,9 @@ export default function Doctors() {
                 value={form.specialization}
                 onChange={handleChange}
                 placeholder="Specialization"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded 
+                bg-white text-black border-gray-300
+                dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 required
               />
 
@@ -153,22 +158,23 @@ export default function Doctors() {
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2 bg-gray-300 rounded"
+                  className="px-4 py-2 bg-gray-300 dark:bg-gray-600 dark:text-white rounded"
                 >
                   Cancel
                 </button>
 
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded"
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                 >
                   {editId ? "Update" : "Add"}
                 </button>
               </div>
             </form>
+
           </div>
         </div>
       )}
     </div>
   );
-} 
+}

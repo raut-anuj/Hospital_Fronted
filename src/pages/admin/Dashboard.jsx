@@ -3,21 +3,21 @@ import Sidebar from "../../components/admin/Sidebar";
 
 const stats = [
   {
-    title: "Total Doctors",
-    value: "45",
-    change: "+5 this week",
-    color: "text-green-600",
-  },
-  {
     title: "Total Patients",
-    value: "120",
-    change: "+12 this week",
+    value: 120,
+    change: "+5 today",
     color: "text-blue-600",
   },
   {
     title: "Appointments",
-    value: "30",
-    change: "Next: 3 today",
+    value: 45,
+    change: "+3 today",
+    color: "text-green-600",
+  },
+  {
+    title: "Doctors",
+    value: 12,
+    change: "Active",
     color: "text-purple-600",
   },
 ];
@@ -28,7 +28,7 @@ export default function Dashboard() {
       {/* Header */}
       <div className="mb-8">
         <h2 className="text-3xl font-semibold text-gray-800">
-          Dashboard <span className="ml-1"></span>
+          Dashboard
         </h2>
         <p className="text-gray-500 text-sm mt-1">
           Welcome back, Admin. Here’s your overview.
@@ -58,4 +58,4 @@ export default function Dashboard() {
       </div>
     </>
   );
-} 
+}

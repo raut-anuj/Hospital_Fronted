@@ -84,7 +84,7 @@ return (
                       to="/"
                       className="font-medium text-blue-600 hover:underline"
                     >
-                      Sign Up
+                      Log In
                      </Link>
                 </p>
           {error && (
