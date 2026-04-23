@@ -7,27 +7,31 @@ import { AdminLayout, DoctorLayout, PatientLayout } from "./components/index.js"
 import { Dashboard, AdminAppointments, Patients, Doctors } from "./components/index.js";
 
 //doctor
-import { DocotrDashboard, MyPatient, Schedule } from "./components/index.js";
+import { DoctorDashboard, MyPatient, Schedule } from "./components/index.js";
 
 //patient
 import { PatientAppointments, PatientDashboard } from "./components/index.js"
 
 import { ProtectedRoute } from "./components/index.js";
 
+import { Unauthorized, Home } from "./components/index.js";
+
 export default function App() {
   return (
     <Routes>
-
+      
+      <Route path="/" element={<Home />} />
+      
       {/* Auth routes */}
-      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
 
       {/* Admin routes */}
       <Route path="/admin" element={
-      // <ProtectedRoute>
+      <ProtectedRoute>
         <AdminLayout />
-      /* </ProtectedRoute> */
-        }>
+      </ProtectedRoute> 
+      }>
 
         {/* default page → /admin */}
         <Route index element={<Dashboard />} />
@@ -39,10 +43,15 @@ export default function App() {
       </Route>
 
       {/* Doctor routes */}
-      <Route path="/doctor" element={<DoctorLayout />}>
+      <Route path="/doctor" element={
+         <ProtectedRoute>
+        <DoctorLayout />
+          </ProtectedRoute> 
+      }>
       
+      {/* yha  ph DoctorDashboard  yh name ho gh*/}
         {/* default page → /admin */}
-        <Route index element={<DocotrDashboard />} />
+        <Route index element={<DoctorDashboard  />} />
         <Route path="MyPatient" element={<MyPatient />} />
         <Route path="Schedule" element={<Schedule />} />
         {/* <Route path="appointments" element={<DoctorAppointments />} /> */}
@@ -50,11 +59,17 @@ export default function App() {
       </Route>
       
       {/* Patient routes */}
-      <Route path="/patient" element={<PatientLayout />}>
+      <Route path="/patient" element={
+          <ProtectedRoute>
+        <PatientLayout />
+          </ProtectedRoute> 
+        }>
       <Route index element={<PatientDashboard />} />
-      <Route path="Appoinment" element={<PatientAppointments />} />
+      <Route path="Appointment" element={<PatientAppointments />} />
     </Route>
 
+      <Route path="/unauthorized" element={<Unauthorized />} />
+      
     </Routes>
   );
 }

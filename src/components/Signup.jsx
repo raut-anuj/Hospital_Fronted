@@ -15,7 +15,7 @@ function Signup() {
 
 return (
    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <div className="mt-5 mb-5 bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
         
         <h2 className="text-2xl text-blue-600 text-center font-bold mb-6">
          Create Account
@@ -81,7 +81,7 @@ return (
           <p className="mt-2 text-center text-base text-black/60">
                     Already have an account?&nbsp;
                      <Link
-                      to="/"
+                      to="/login"
                       className="font-medium text-blue-600 hover:underline"
                     >
                       Log In

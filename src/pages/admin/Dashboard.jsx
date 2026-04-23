@@ -23,14 +23,20 @@ const stats = [
 ];
 
 export default function Dashboard() {
+  const stats = [
+    { title: "Total Patients", value: "120", change: "+5 this week", color: "text-green-600" },
+    { title: "Appointments", value: "30", change: "Next: 3 today", color: "text-blue-600" },
+    { title: "Critical Cases", value: "3", change: "Stable trend", color: "text-red-600" },
+  ];
+
   return (
-    <>
+    <div className="p-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-3xl font-semibold text-gray-800">
+        <h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-100">
           Dashboard
         </h2>
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
           Welcome back, Admin. Here’s your overview.
         </p>
       </div>
@@ -40,9 +46,9 @@ export default function Dashboard() {
         {stats.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl hover:-translate-y-1 transition-all"
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 hover:shadow-xl hover:-translate-y-1 transition-all"
           >
-            <h3 className="text-lg font-medium text-gray-700">
+            <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">
               {item.title}
             </h3>
 
@@ -50,12 +56,13 @@ export default function Dashboard() {
               {item.value}
             </p>
 
-            <span className="text-sm text-gray-500 mt-1 block">
+            <span className="text-sm text-gray-500 dark:text-gray-400 mt-1 block">
               {item.change}
             </span>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
+

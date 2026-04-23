@@ -23,17 +23,11 @@ function Login() {
   const login = async (data) => {
   console.log("LOGIN CALLED", data);
 
-  try {
+ try {
     const res = await fetch("http://localhost:8000/api/v1/auth/login", {
-      
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data.name,
-        password: data.password,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: data.name, password: data.password }),
     });
 
     console.log("STATUS:", res.status);
@@ -42,30 +36,22 @@ function Login() {
 
     console.log("RESULT:", result);
 
-    if (res.ok) {
-      console.log("Login Success", result);
+    if (res.ok && result?.user?.role && result?.token) {
 
-      // 🔥 token save
+      localStorage.setItem("role", result.user.role);
       localStorage.setItem("token", result.token);
 
-      // 🔥 role backend se aayega
-      const role = result.user.role;
-
-      // 🔥 redirect based on role
-      if (role === "admin") {
-        navigate("/admin");
-      } else if (role === "doctor") {
-        navigate("/doctor");
-      } else {
-        navigate("/patient");
-      }
-
+      const role = result?.user?.role?.toLowerCase();
+      console.log(role)
+      
+      if (role === "admin") navigate("/admin");
+      else if (role === "doctor") navigate("/doctor");
+      else navigate("/patient");
     } else {
       setError(result.message || "Login Failed");
     }
-
   } catch (err) {
-    console.log(err);
+    console.error(err);
     setError("Server Error");
   }
     }
@@ -114,9 +100,9 @@ function Login() {
 
               //google button
           <button
-  onClick={() => loginWithRedirect()}
-  className="w-full flex items-center justify-center gap-2 bg-indigo-500 text-white py-2 rounded-lg shadow hover:bg-indigo-700 transition"
->
+          onClick={() => loginWithRedirect()}
+          className="w-full flex items-center justify-center gap-2 bg-indigo-500 text-white py-2 rounded-lg shadow hover:bg-indigo-700 transition"
+        >
   {/* Google Icon (SVG) */}
   <svg
     className="w-5 h-5"

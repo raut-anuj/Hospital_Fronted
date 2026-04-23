@@ -3,13 +3,16 @@ import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
   const { isAuthenticated, isLoading } = useAuth0();
+  const token = localStorage.getItem("token"); 
 
   // jab tak auth check ho raha hai
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) 
+    return <p>Loading...</p>;
 
   // agar login hai → allow
-  if (isAuthenticated) return children;
+  if (isAuthenticated || token) 
+    return children;
 
   // agar login nahi → login page
-  return <Navigate to="/" />;
+  return <Navigate to="/login" />;
 }
