@@ -10,8 +10,8 @@ import { Dashboard, AdminAppointments, Patients, Doctors } from "./components/in
 import { DoctorDashboard, MyPatient, Schedule } from "./components/index.js";
 
 //patient
-import { PatientAppointments, PatientDashboard } from "./components/index.js"
-
+import { PatientDashboard } from "./components/index.js"
+import { PatientAppointment }from "./components/index.js";
 import { ProtectedRoute } from "./components/index.js";
 
 import { Unauthorized, Home } from "./components/index.js";
@@ -65,7 +65,7 @@ export default function App() {
           </ProtectedRoute> 
         }>
       <Route index element={<PatientDashboard />} />
-      <Route path="Appointment" element={<PatientAppointments />} />
+      <Route path="appointment" element={<PatientAppointment/>} />
     </Route>
 
       <Route path="/unauthorized" element={<Unauthorized />} />

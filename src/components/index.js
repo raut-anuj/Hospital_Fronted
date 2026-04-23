@@ -27,7 +27,7 @@ import DoctorDashboard from "../pages/doctor/DoctorDashboard"
 import MyPatient from "../pages/doctor/MyPatient"
 import Schedule from "../pages/doctor/Schedule"
 
-import PatientAppointments from "../pages/patient/Appointment"
+import PatientAppointment from "../pages/patient/PatientAppointment"
 import PatientDashboard from "../pages/patient/PatientDashboard"
 
 import ProtectedRoute from "../routes/ProtectedRoute"
@@ -70,7 +70,7 @@ export {
 
     //pages--->patient
     PatientDashboard,
-    PatientAppointments,
+    PatientAppointment,
     PatientSidebar,
 
     ProtectedRoute,

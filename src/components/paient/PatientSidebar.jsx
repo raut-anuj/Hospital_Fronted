@@ -2,8 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
-  { name: "Dashboard",path: "/patient", exact: true },
-  { name: "My Appointments",path: "/patient/Appoinment" },
+ { name: "Dashboard", path: "/patient", exact: true },
+  { name: "Appointment", path: "/patient/appointment" },
 //   { name: "Prescriptions",path: "/patient/prescriptions" },
 //   { name: "Reports",path: "/patient/reports" },
 //   { name: "Billing",path: "/patient/billing" },
