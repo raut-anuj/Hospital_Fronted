@@ -11,21 +11,20 @@ useEffect(() => {
       const res = await fetch("http://localhost:8000/api/v1/patient/getAppointments?name=Anuj Kumar")
       const data = await res.json();
 
-      // console.log("APPOINTMENTS:", data.data);
+      console.log("APPOINTMENTS:", data.data);
       setAppointments(data?.data || []);
     } catch (err) {
       console.log("ERROR:", err);
     }
   };
-
-  fetchAppointments();
+   fetchAppointments();
 }, []);
 
 return (
     <div className="p-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
   {/* Header */}
   <h2 className="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
-    My Appointments
+    My Appointment
   </h2>
 
   <p className="text-gray-500 dark:text-gray-400 mb-6">
@@ -78,7 +77,7 @@ return (
                 : "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"
             }`}
           >
-            {a.status}
+            {a.status.toUpperCase()}
           </span>
         </td>
       </tr>
@@ -96,13 +95,15 @@ return (
           className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow"
         >
           <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-            Patient: {item.patientId?.name}
+            Patient: {item.patientId?.name || "Not Assigned"}
           </h3>
           <p className="text-gray-700 dark:text-gray-200">
             Doctor: {item.doctorId?.drname || "Not Assigned"}
           </p>
-          <p className="text-gray-700 dark:text-gray-200">Status: {item.status}</p>
-          <p className="text-gray-700 dark:text-gray-200">Amount: ₹{item.amount}</p>
+          <p className="text-gray-700 dark:text-gray-200">
+            Status: {item.status}</p>
+          <p className="text-gray-700 dark:text-gray-200">
+            Amount: ₹{item.amount}</p>
         </div>
       ))}
   </div>
