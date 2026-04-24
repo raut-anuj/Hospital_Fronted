@@ -31,11 +31,11 @@ export default function PatientDashboard() {
         </div>
         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow text-center">
           <h3 className="text-gray-700 dark:text-gray-200">Reports</h3>
-          <p className="text-2xl font-bold text-purple-600">3</p>
+          <p className="text-2xl font-bold text-purple-400">3</p>
         </div>
         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow text-center">
           <h3 className="text-gray-700 dark:text-gray-200">Billing</h3>
-          <p className="text-2xl font-bold text-red-600">₹1200</p>
+          <p className="text-2xl font-bold text-red-400">₹1200</p>
         </div>
       </div>
 
