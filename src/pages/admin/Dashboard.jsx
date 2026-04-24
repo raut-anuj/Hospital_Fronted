@@ -26,7 +26,7 @@ export default function Dashboard() {
   const stats = [
     { title: "Total Patients", value: "120", change: "+5 this week", color: "text-green-600" },
     { title: "Appointments", value: "30", change: "Next: 3 today", color: "text-blue-600" },
-    { title: "Critical Cases", value: "3", change: "Stable trend", color: "text-red-600" },
+    { title: "Critical Cases", value: "3", change: "Stable trend", color: "text-red-400" },
   ];
 
   return (

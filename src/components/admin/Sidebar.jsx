@@ -5,7 +5,7 @@ const menuItems = [
   { name: "Dashboard", path: "/admin", exact: true },
   { name: "Doctors", path: "/admin/doctors" },
   { name: "Patients", path: "/admin/patients" },
-  { name: "Appointments", path: "/admin/appointments" },
+  // { name: "Appointments", path: "/admin/appointments" },
 ];
 
 export default function Sidebar() {

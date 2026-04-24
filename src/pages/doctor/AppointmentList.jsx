@@ -1,5 +1,4 @@
 // aaj kh date sh [ peeche date ] tk, jitna bhi appoinments ha woh isme aye gh.
-
 import React, {useState, useEffect} from "react";
 
 export default function AppointmentList() {
@@ -107,8 +106,8 @@ const PastAppointments = appointment
     </tr>
   )}
 </tbody>
-</table>
-</div>
+    </table>
+    </div>
 
 {/* List View */}
     <div className="space-y-4">
