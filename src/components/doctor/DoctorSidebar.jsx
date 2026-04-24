@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 
 const menuItems = [
   { name: "Dashboard",  path: "/doctor", exact: true },
-  { name: "My Patient",  path: "/doctor/MyPatient" },
-  { name: "Schedule",  path: "/doctor/Schedule" },
-  { name: "Appointments",  path: "/doctor/appointments" },
-  { name: "Reports",  path: "/doctor/reports" },
+  { name: "AppointmentList",  path: "/doctor/AppointmentList" },
+  { name: "ScheduleAppointment",  path: "/doctor/ScheduleAppointment" },
+  // { name: "Appointments",  path: "/doctor/appointments" },
+  // { name: "Reports",  path: "/doctor/reports" },
 ];
 
 export default function DoctorSidebar() {

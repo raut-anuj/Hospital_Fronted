@@ -7,7 +7,7 @@ import { AdminLayout, DoctorLayout, PatientLayout } from "./components/index.js"
 import { Dashboard, AdminAppointments, Patients, Doctors } from "./components/index.js";
 
 //doctor
-import { DoctorDashboard, MyPatient, Schedule } from "./components/index.js";
+import { AppointmentList, DoctorDashboard, ScheduleAppointment } from "./components/index.js";
 
 //patient
 import { PatientDashboard } from "./components/index.js"
@@ -50,10 +50,9 @@ export default function App() {
       }>
       
       {/* yha  ph DoctorDashboard  yh name ho gh*/}
-        {/* default page → /admin */}
         <Route index element={<DoctorDashboard  />} />
-        <Route path="MyPatient" element={<MyPatient />} />
-        <Route path="Schedule" element={<Schedule />} />
+        <Route path="AppointmentList" element={<AppointmentList />} />
+        <Route path="ScheduleAppointment" element={<ScheduleAppointment />} />
         {/* <Route path="appointments" element={<DoctorAppointments />} /> */}
 
       </Route>

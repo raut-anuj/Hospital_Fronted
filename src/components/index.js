@@ -24,8 +24,8 @@ import Patients from "../pages/admin/Patient";
 import AdminAppointments from "../pages/admin/Apointment"
 
 import DoctorDashboard from "../pages/doctor/DoctorDashboard"
-import MyPatient from "../pages/doctor/MyPatient"
-import Schedule from "../pages/doctor/Schedule"
+import AppointmentList from "../pages/doctor/AppointmentList.jsx"
+import ScheduleAppointment from "../pages/doctor/ScheduleAppointment.jsx"
 
 import PatientAppointment from "../pages/patient/PatientAppointment"
 import PatientDashboard from "../pages/patient/PatientDashboard"
@@ -65,8 +65,8 @@ export {
 
     //pages--->doctor
     DoctorDashboard,
-    MyPatient,
-    Schedule,
+    AppointmentList,
+    ScheduleAppointment,
 
     //pages--->patient
     PatientDashboard,

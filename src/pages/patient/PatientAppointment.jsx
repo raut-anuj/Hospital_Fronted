@@ -3,23 +3,33 @@ import PatientSidebar from "../../components/paient/PatientSidebar";
 
 export default function PatientAppointment() {
 
-  const [appointments, setAppointments] = useState([]);
+const [appointments, setAppointments] = useState([]);
 
 useEffect(() => {
   const fetchAppointments = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/v1/patient/getAppointments?name=Anuj Kumar")
+      const res = await fetch(
+        "http://localhost:8000/api/v1/patient/getAppointments?name=Anuj Kumar"
+      );
+
       const data = await res.json();
 
-      console.log("APPOINTMENTS:", data.data);
-      setAppointments(data?.data || []);
+      // ✅ Date wise sort (nearest first)
+      const sortedAppointments = (data?.data || []).sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+      );
+
+      console.log("APPOINTMENTS:", sortedAppointments);
+
+      setAppointments(sortedAppointments);
     } catch (err) {
       console.log("ERROR:", err);
     }
   };
-   fetchAppointments();
-}, []);
 
+  fetchAppointments();
+  }, []);
+  
 return (
     <div className="p-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
   {/* Header */}
@@ -53,7 +63,9 @@ return (
       >
         {/* Display ke liye sequential number */}
         <td className="p-3 text-gray-800 dark:text-gray-100">{index + 1}</td>
-        <td className="text-gray-800 dark:text-gray-100">{a.doctorId?.drname}</td>
+        <td className="text-gray-800 dark:text-gray-100">
+          {a.doctorId?.drname}</td>
+
         <td className="text-gray-800 dark:text-gray-100">
           {new Date(a.date).toLocaleDateString("en-IN", {
             day: "2-digit",
@@ -61,12 +73,14 @@ return (
             year: "numeric",
           })}
         </td>
+
         <td className="text-gray-800 dark:text-gray-100">
           {new Date(a.date).toLocaleTimeString("en-IN", {
             hour: "2-digit",
             minute: "2-digit",
           })}
         </td>
+
         <td>
           <span
             className={`px-3 py-1 rounded-full text-sm ${
