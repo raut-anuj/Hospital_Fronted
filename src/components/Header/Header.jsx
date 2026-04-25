@@ -137,7 +137,7 @@ export default function HospitalCareHeader() {
     }     
   }, [darkMode]);
 
-  // Logout handler
+  // Logout handler   
   const handleLogout = async () => {
     try {
       const role = localStorage.getItem("role"); // 👈 role saved at login
