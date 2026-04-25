@@ -131,7 +131,7 @@ export default function HospitalCareHeader() {
     if (darkMode) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
-    } else {
+    } else {   
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
