@@ -134,7 +134,7 @@ export default function HospitalCareHeader() {
     } else {   
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
-    }
+    }     
   }, [darkMode]);
 
   // Logout handler
