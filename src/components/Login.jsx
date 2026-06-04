@@ -100,23 +100,18 @@ function Login() {
 
               //google button
           <button
-          onClick={() => loginWithRedirect()}
+          type="button"
+          onClick={() =>
+            loginWithRedirect({
+              appState: {
+                returnTo: "/patient",
+              },
+            })
+          }
           className="w-full flex items-center justify-center gap-2 bg-indigo-500 text-white py-2 rounded-lg shadow hover:bg-indigo-700 transition"
         >
-  {/* Google Icon (SVG) */}
-  <svg
-    className="w-5 h-5"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fill="#EA4335"
-      d="M12 11.8v2.9h6.6c-.3 1.7-2 5-6.6 5-4 0-7.3-3.3-7.3-7.3s3.3-7.3 7.3-7.3c2.3 0 3.8.9 4.7 1.7l2.3-2.3C17.3 3.6 14.9 2.5 12 2.5 6.8 2.5 2.5 6.8 2.5 12s4.3 9.5 9.5 9.5c5.5 0 9.1-3.9 9.1-9.4 0-.6-.1-1.1-.2-1.6H12z"
-    />
-  </svg>
-  <span className="font-medium">Login with Google</span>
-            </button>
+          Login with Google
+</button>
 
 
       ) : (

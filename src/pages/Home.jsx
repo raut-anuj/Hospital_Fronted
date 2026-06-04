@@ -6,29 +6,47 @@ const Home = () => {
     <div>
       {/* Hero Section */}
       <div className="h-125 md:text-left text-center bg-blue-300 py-20 px-8 p-6">
+
         <h1 className="text-white text-7xl font-bold px-3">
           Your Health,<br />
           <span className="text-red-700">Our Priority</span>
         </h1>
+
         <p className="font-bold text-2xl mt-4 px-5">
           Simplify your healthcare journey with expert doctors, easy scheduling,
           and secured appointments.
         </p>
+
         <div className="mt-6 space-x-4 px-4">
-          <Button bgColor="bg-black" textColor="text-blue-700"
+         <Button
+          bgColor="bg-black"
+          textColor="text-blue-700"
+          className="
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:shadow-lg
+          "
+          onClick={() => window.open('/signup', '_self')}
+        >
+          Sign In
+        </Button>
 
-          onClick={() => window.open("/signup", "_self")}
-          >
-            Sign In
-            </Button>
-
-          <Button bgColor="bg-white " textColor="text-blue-600"
-          
-            onClick={() => window.open("/login", "_self")}
-          >
-            Login
-          </Button>
+        <Button
+          bgColor="bg-white"
+          textColor="text-blue-600"
+          className="
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:shadow-lg
+          "
+          onClick={() => window.open('/login', '_self')}
+        >
+          Login
+        </Button>
         </div>
+        
       </div>
 
       {/* Why Choose Us */}
