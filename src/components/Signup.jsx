@@ -9,13 +9,38 @@ function Signup() {
   // const dispatch = useDispatch()
   const {register, handleSubmit} = useForm()
 
-  const create = (data) => {
-  console.log("SIGNUP DATA", data);
+ const create = async (data) => {
+  console.log("SIGNUP DATA:", data);
+
+  try {
+    const res = await fetch("http://localhost:8000/api/v1/patient/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    console.log("STATUS:", res.status);
+    
+    const result = await res.json();
+    console.log("BACKEND RESULT:", result);
+
+    if (res.ok) {
+      setError("");
+      alert("Account created successfully");
+      navigate("/login");
+    } else {
+      setError(result.message || "Signup failed");
+    }
+  } catch (err) {
+    console.log(err);
+    setError("Server error");
+  }
 };
 
 return (
-   <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="mt-5 mb-5 bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+   <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4 py-8">
+      <div className="mt-5 mb-5 bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
         
         <h2 className="text-2xl text-blue-600 text-center font-bold mb-6">
          Create Account
@@ -28,14 +53,7 @@ return (
               label="Full Name"
               type="text"
               placeholder="Enter your full name"
-              {...register("name", { required: true })}
-            />
-
-            <Input
-              label="Phone Number"
-              type="text"
-              placeholder="Enter your phone number"
-              {...register("phone number", { required: true })}
+              {...register("name",{ required: true })}
             />
 
             <Input
@@ -63,7 +81,7 @@ return (
               label="Confirm Password: "
               type="password"
               placeholder="Enter your password"
-              {...register("confirm password", {
+              {...register("confirmPassword", {
                   required: true,})}
               />
               
@@ -78,7 +96,7 @@ return (
           </div>
         </form>
 
-          <p className="mt-2 text-center text-base text-black/60">
+          <p className="mt-2 text-center text-base text-gray-600">
                     Already have an account?&nbsp;
                      <Link
                       to="/login"

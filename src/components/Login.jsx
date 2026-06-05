@@ -10,6 +10,8 @@ function Login() {
   const navigate = useNavigate();
   const { loginWithRedirect, isAuthenticated, user, isLoading } = useAuth0();
   const { register, handleSubmit } = useForm();
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+    
 
   //  useEffect(() => {
   //   if (isAuthenticated) {
@@ -54,95 +56,90 @@ function Login() {
     console.error(err);
     setError("Server Error");
   }
+
     }
 
-  return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        
-        <h2 className="text-2xl text-blue-600 text-center font-bold mb-6">
-          Log In
-        </h2>
+return (
+  <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <h2 className="text-2xl text-blue-600 text-center font-bold mb-6">
+        Log In
+      </h2>
 
-        {/* 🔥 Error show */}
-        {error && (
-          <p className="text-red-600 mt-4 text-center">{error}</p>
-        )}
+      {error && <p className="text-red-600 mt-4 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(login)} className="mt-6">
-          <div className="space-y-5">
+      <form onSubmit={handleSubmit(login)} className="mt-6">
+        <div className="space-y-5">
+          <Input
+            label="Name"
+            type="text"
+            placeholder="Enter name"
+            {...register("name", { required: true })}
+          />
 
-            <Input
-              label="Name"
-              type="text"
-              placeholder="Enter name"
-              {...register("name", { required: true })}
-            />
+          <Input
+            label="Password"
+            type="password"
+            placeholder="Enter password"
+            {...register("password", { required: true })}
+          />
 
-            <Input
-              label="Password"
-              type="password"
-              placeholder="Enter password"
-              {...register("password", { required: true })}
-            />
-
-            <Button
-              type="submit"
-              className="w-full bg-blue-300 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-            >
-              Log In
-            </Button>
-
-          <p className="font-semibold text-center">
-            Or login with</p>
-
-            {!isAuthenticated ? (
-
-              //google button
-          <button
-          type="button"
-          onClick={() =>
-            loginWithRedirect({
-              appState: {
-                returnTo: "/patient",
-              },
-            })
-          }
-          className="w-full flex items-center justify-center gap-2 bg-indigo-500 text-white py-2 rounded-lg shadow hover:bg-indigo-700 transition"
-        >
-          Login with Google
-</button>
-
-
-      ) : (
-        <div className="text-center">
-          <h3 className="text-lg font-semibold">
-            Welcome {user.name}
-          </h3>
-          <img
-          src={user.picture || "/default-user.png"}
-          alt="profile"
-        />
-        </div>
-      )}
-
-          </div>
-        </form>
-
-        <div className="mt-4 text-center">
-          Don&apos;t have any account?&nbsp;
-          <Link
-            to="/signup"
-            className="font-medium text-blue-500 hover:underline"
+          <Button
+            type="submit"
+            className="w-full bg-blue-300 text-white py-2 rounded-lg hover:bg-blue-700 transition"
           >
-            Sign Up
-          </Link>
+            Log In
+          </Button>
+
+          <div className="text-center">
+            <p className="mt-6 mb-3 font-medium">Or login with</p>
+
+            <button
+              type="button"
+              onClick={() =>
+                loginWithRedirect({
+                  appState: {
+                    returnTo: "/patient",
+                  },
+                })
+              }
+              className="w-full flex items-center justify-center gap-2 bg-indigo-500 text-white py-2 rounded-lg shadow hover:bg-indigo-700 transition"
+            >
+              Login with Google
+            </button>
+
+            {loggedUser && (
+              <div className="text-center mt-6">
+                <p className="font-semibold text-lg">
+                  Welcome {loggedUser.name}
+                </p>
+
+                {loggedUser.profile && (
+                  <img
+                    src={loggedUser.profile}
+                    alt="profile"
+                    className="w-14 h-14 rounded-full mx-auto mt-2 object-cover"
+                  />
+                )}
+              </div>
+            )}
+          </div>
         </div>
+      </form>
+
+      <div className="mt-4 text-center">
+        Don&apos;t have any account?&nbsp;
+        <Link
+          to="/signUp"
+          className="font-medium text-blue-500 hover:underline"
+        >
+          Sign Up
+        </Link>
       </div>
     </div>
-  );
-};
-
+  </div>
+);
+}
 
 export default Login;
 
