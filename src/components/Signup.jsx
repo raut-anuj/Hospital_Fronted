@@ -39,77 +39,79 @@ function Signup() {
 };
 
 return (
-   <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4 py-8">
-      <div className="mt-5 mb-5 bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
-        
-        <h2 className="text-2xl text-blue-600 text-center font-bold mb-6">
-         Create Account
-          </h2>
-         
-          <form onSubmit={handleSubmit(create)} className="mt-6">
-          <div className="space-y-5">
+  <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center px-4 py-8">
+    <div className="w-full max-w-md bg-white/90 backdrop-blur rounded-3xl shadow-xl border border-slate-100 p-8">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-slate-900">
+          Create Account
+        </h2>
+        <p className="mt-2 text-sm text-slate-500">
+          Join Hospital Care and manage your appointments
+        </p>
+      </div>
 
-            <Input
-              label="Full Name"
-              type="text"
-              placeholder="Enter your full name"
-              {...register("name",{ required: true })}
-            />
+      {error && (
+        <p className="mb-5 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600 text-center">
+          {error}
+        </p>
+      )}
 
-            <Input
-              label="Email: "
-              placeholder="Enter your email"
-              type="email"
-              {...register("email", {
-                  required: true,
-                  validate: {
-                      matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                      "Email address must be a valid address",
-                  }
-              })}
-              />
-            
-            <Input
-              label="Password: "
-              type="password"
-              placeholder="Enter your password"
-              {...register("password", {
-                  required: true,})}
-              />
+      <form onSubmit={handleSubmit(create)} className="space-y-5">
+        <Input
+          label="Full Name"
+          type="text"
+          placeholder="Enter your full name"
+          {...register("name", { required: true })}
+        />
 
-            <Input
-              label="Confirm Password: "
-              type="password"
-              placeholder="Enter your password"
-              {...register("confirmPassword", {
-                  required: true,})}
-              />
-              
+        <Input
+          label="Email"
+          type="email"
+          placeholder="Enter your email"
+          {...register("email", {
+            required: true,
+            validate: {
+              matchPattern: (value) =>
+                /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                "Email address must be valid",
+            },
+          })}
+        />
 
-            <Button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-            >
-              Create Account
-            </Button>
+        <Input
+          label="Password"
+          type="password"
+          placeholder="Create a password"
+          {...register("password", { required: true })}
+        />
 
-          </div>
-        </form>
+        <Input
+          label="Confirm Password"
+          type="password"
+          placeholder="Confirm your password"
+          {...register("confirmPassword", { required: true })}
+        />
 
-          <p className="mt-2 text-center text-base text-gray-600">
-                    Already have an account?&nbsp;
-                     <Link
-                      to="/login"
-                      className="font-medium text-blue-600 hover:underline"
-                    >
-                      Log In
-                     </Link>
-                </p>
-          {error && (
-          <p className="text-red-600 mt-4 text-center">{error}</p>
-        )}
+        <Button
+          type="submit"
+          className="w-full rounded-xl bg-blue-600 text-white py-3 font-semibold shadow-sm hover:bg-blue-700 transition"
+        >
+          Create Account
+        </Button>
+      </form>
+
+      <p className="mt-7 text-center text-sm text-slate-500">
+        Already have an account?{" "}
+        <Link
+          to="/login"
+          className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+        >
+          Log In
+        </Link>
+      </p>
     </div>
-</div>
-)}
+  </div>
+);
+}
 
 export default Signup 

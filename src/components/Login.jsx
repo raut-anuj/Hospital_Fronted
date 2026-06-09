@@ -10,7 +10,6 @@ function Login() {
   const navigate = useNavigate();
   const { loginWithRedirect, isAuthenticated, user, isLoading } = useAuth0();
  const { register, handleSubmit, formState: { errors } } = useForm();
-  const loggedUser = JSON.parse(localStorage.getItem("user"));
     
   // 🔥 Login function
 const login = async (data) => {
@@ -33,7 +32,7 @@ const login = async (data) => {
       result = JSON.parse(text);
     } catch {
       result = {
-        message: "Backend returned invalid response",
+        message: "Password is wrong",
       };
     }
 
@@ -41,14 +40,12 @@ const login = async (data) => {
     console.log("RESULT:", result);
 
     if (res.ok && result?.data?.user && result?.data?.token) {
-      console.log("USER:", result?.data?.user);
-      console.log("TOKEN:", result?.data?.token);
-      console.log("OK:", res.ok);
-      localStorage.setItem("user", JSON.stringify(result.data.user));
-      localStorage.setItem("token", result.data.token);
+    localStorage.setItem("user", JSON.stringify(result.data.user));
+    localStorage.setItem("token", result.data.token);
+    localStorage.setItem("role", "patient");
 
-    navigate("/patient");
-  }
+  navigate("/patient");
+}
  else {
       setError(result?.message || "Login Failed");
     }
@@ -59,19 +56,26 @@ const login = async (data) => {
 };
 
 return (
-  <div className="flex justify-center items-center h-screen bg-gray-100">
-    <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-      <h2 className="text-2xl text-blue-600 text-center font-bold mb-6">
-        Log In
-      </h2>
+  <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center px-4">
+    <div className="w-full max-w-md bg-white/90 backdrop-blur rounded-3xl shadow-xl border border-slate-100 p-8">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-slate-900">Welcome Back</h2>
+        <p className="mt-2 text-sm text-slate-500">
+          Log in to continue to your account
+        </p>
+      </div>
 
-      {error && <p className="text-red-600 mt-4 text-center">{error}</p>}
+      {error && (
+        <p className="mb-5 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600 text-center">
+          {error}
+        </p>
+      )}
 
-      <form onSubmit={handleSubmit(login)} className="mt-6">
-        <div className="space-y-5">
+      <form onSubmit={handleSubmit(login)} className="space-y-5">
+        <div>
           <Input
             label="Email"
-            type="text"
+            type="email"
             placeholder="Enter your email"
             {...register("email", {
               required: "Email is required",
@@ -83,82 +87,81 @@ return (
           />
 
           {errors.email && (
-            <p className="text-red-500 text-sm -mt-3">
+            <p className="mt-2 text-sm text-red-500">
               {errors.email.message}
             </p>
           )}
+        </div>
 
+        <div>
           <Input
-          label="Password"
-          type="password"
-          placeholder="Enter password"
-          {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 3,
-              message: "Password must be at least 3 characters",
-            },
-          })}
-        />
+            label="Password"
+            type="password"
+            placeholder="Enter your password"
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 3,
+                message: "Password must be at least 3 characters",
+              },
+            })}
+          />
 
-        {errors.password && (
-          <p className="text-red-500 text-sm -mt-3">
-            {errors.password.message}
-          </p>
-        )}
-
-          <Button
-            type="submit"
-            className="w-full bg-blue-300 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            Log In
-          </Button>
-
-          <div className="text-center">
-            <p className="mt-6 mb-3 font-medium">Or login with</p>
-
-            <button
-              type="button"
-              onClick={() =>
-                loginWithRedirect({
-                  appState: {
-                    returnTo: "/patient",
-                  },
-                })
-              }
-              className="w-full flex items-center justify-center gap-2 bg-indigo-500 text-white py-2 rounded-lg shadow hover:bg-indigo-700 transition"
-            >
-              Login with Google
-            </button>
-
-            {loggedUser && (
-              <div className="text-center mt-6">
-                <p className="font-semibold text-lg">
-                  Welcome {loggedUser.name}
+          <div className="mt-2 flex items-center justify-between">
+            <div>
+              {errors.password && (
+                <p className="text-sm text-red-500">
+                  {errors.password.message}
                 </p>
+              )}
+            </div>
 
-                {loggedUser.profile && (
-                  <img
-                    src={loggedUser.profile}
-                    alt="profile"
-                    className="w-14 h-14 rounded-full mx-auto mt-2 object-cover"
-                  />
-                )}
-              </div>
-            )}
+            <Link
+              to="/forgot-password"
+              className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline"
+            >
+              Forgot Password?
+            </Link>
           </div>
         </div>
+
+        <Button
+          type="submit"
+          className="w-full rounded-xl bg-blue-600 text-white py-3 font-semibold shadow-sm hover:bg-blue-700 transition"
+        >
+          Log In
+        </Button>
+
+        <div className="flex items-center gap-3">
+          <div className="h-px flex-1 bg-slate-200" />
+          <span className="text-sm text-slate-400">or</span>
+          <div className="h-px flex-1 bg-slate-200" />
+        </div>
+
+        <button
+          type="button"
+          onClick={() =>
+            loginWithRedirect({
+              appState: {
+                returnTo: "/patient",
+              },
+            })
+          }
+          className="w-full rounded-xl border border-slate-300 bg-white py-3 font-medium text-slate-700 shadow-sm hover:bg-slate-50 transition"
+        >
+          Continue with Google
+        </button>
       </form>
 
-      <div className="mt-4 text-center">
-        Don&apos;t have any account?&nbsp;
+      <p className="mt-7 text-center text-sm text-slate-500">
+        Don&apos;t have an account?{" "}
         <Link
-          to="/signUp"
-          className="font-medium text-blue-500 hover:underline"
+          to="/signup"
+          className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
         >
           Sign Up
         </Link>
-      </div>
+      </p>
     </div>
   </div>
 );

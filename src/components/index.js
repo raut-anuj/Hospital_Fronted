@@ -5,6 +5,7 @@ import Signup from './Signup'
 import Home from '../pages/Home'
 import Card from '../components/Card'
 import Footer from '../components/Footer/Footer'
+import ForgotPassword from '../components/ForgotPassword'
 
 // import Card from "../components/admin/Card"
 import Navbar from "../components/admin/Navbar"
@@ -43,6 +44,7 @@ export {
     Signup,
     Header,
     Card,
+    ForgotPassword,
 
     //admin
     Navbar,

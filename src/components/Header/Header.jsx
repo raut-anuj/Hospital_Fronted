@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function HospitalCareHeader() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
+  const { logout: auth0Logout, isAuthenticated } = useAuth0();
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
@@ -28,20 +30,28 @@ export default function HospitalCareHeader() {
   }, [darkMode]);
 
   // Logout handler   
-  const handleLogout = async () => {
-    try {
-      const role = localStorage.getItem("role"); // 👈 role saved at login
-      await fetch(`http://localhost:8000/api/v1/${role}/logout`, {
-        method: "POST",
-        credentials: "include", // cookies send/clear
+const handleLogout = async () => {
+  try {
+    localStorage.clear();
+    sessionStorage.clear();
+
+    if (isAuthenticated) {
+      auth0Logout({
+        logoutParams: {
+          returnTo: window.location.origin + "/login",
+        },
       });
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
-      window.location.href = "/login";
-    } catch (err) {
-      console.error("Logout failed", err);
+      return;
     }
-  };
+
+    window.location.href = "/login";
+  } catch (err) {
+    console.error("Logout failed", err);
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = "/login";
+  }
+};
 
   return (
     <header className="bg-white dark:bg-gray-900 border-b shadow-sm px-6 py-4 flex items-center justify-between">
